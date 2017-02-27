@@ -1,0 +1,141 @@
+= MQTT, le protocole IoT
+
+== En quelques mots…
+
+image::mqtt-protocole.png[]
+
+- Message Queuing Telemetry Transport
+- Pub/Sub
+- QoS
+- TCP/IP
+- IBM 1999
+- Léger, peu gourmand, robuste
+- Arduino, Android/iOS…
+
+== MQTT, TL;DR
+
+image::tl.gif[]
+
+- c'est un protocole, pas un broker
+- idéal dans un univers Mobile/IoT temps réel
+- plus performant que le HTTP et XMPP
+
+== MQTT, pour qui ?
+
+- la télémétrie (sonde température, qualité de l'eau, etc.)
+- l'automobile
+- la domotique
+
+Mais aussi…
+
+- application de chat _(facebook)_
+- mise à jour temps réel dans les applications _(feeder & co)_
+- services de notification
+
+== MQTT, publish-subscribe
+
+image::MQTT.png[]
+
+- les publishers et subscribers ne se connaissent pas
+- ils peuvent ne pas être connectés en même temps
+- le subscriber reçoit les messages que lorsqu'il écoute
+
+== MQTT, les topics
+
+- sensor/1/temperature
+- sensors/+/temperature
+- sensors/1/+
+- sensors/#
+- sensors/\+/+
+
+== MQTT, le payload
+
+- _data-agnostic_
+- 256Mo max
+
+== MQTT, la qualité de service
+
+- niveau 0 *Livré au mieux 1x*
+- niveau 1 *Livré au moins 1x*
+- niveau 2 *Livré exactement 1x*
+- _le niveau 2 n'est pas supporté par tous les brokers_
+
+== MQTT, Last Will and Testament _(LWT)_
+
+image::apwu.gif[]
+
+Le _LWT_ est un message publié par le broker, en cas de déconnexion accidentelle.
+
+|===
+| message | topic | payload
+| après la connexion, publication d'un message | sensor/1/state | connected
+| LWT | sensor/1/state | disconnected
+|===
+
+== MQTT, les messages retenus
+
+Le message…
+
+- sera envoyé à tous les subscribers
+- sera *AUSSI* envoyé à tous les nouveaux subscribers
+- correspond au *dernier* message lié à un topic
+
+== MQTT, "heartbeats"
+
+- délai personnalisable _< 18h12m15s_
+- le PING est envoyé uniquement si aucun échange n'est détecté durant le délai
+- à 150% du délai, le broker coupe la connexion _(et le cas échéant envoie le LWT)_
+
+== MQTT, Transport
+
+- via TCP
+- via Websocket
+- via UDP avec le protocole MQTT-SN
+
+== MQTT, et la montée en charge
+
+- il existe un mode _"bridge"_
+- voir du côté du _clustering_ de certains brokers
+
+== MQTT, sécurité
+
+- via la couche TLS
+- via le login/password à la connexion
+- via le client_id
+- via la signature et/ou l'encryption du payload
+- via l'autorisation de souscrire et/ou publier sur certains topic
+
+== MQTT, la performance
+
+A titre de comparaison avec le protocole HTTPS.
+
+- 93x faster throughput
+- 11.89x less battery to send
+- 170.9x less battery to receive
+- 1/2 as much power to keep connection open
+- 8x less network overhead
+
+== MQTT, les différents broker du marché
+
+|===
+| broker | informations
+| mosquitto | implémentation de référence. Websocket, TLS, très leger mais pas de HA
+| rabbitmq | plugin MQTT. Pas de support QoS 2, implémentation de Websocket en béta
+| activemq | websocket, possibilité de plugin customisé. Pour la HA, nécessite un point de référence, Zookeeper/MySQL/Disque…
+| HiveMQ | propose son produit dans le cloud
+| Kafka | il est possible d'avoir un pont avec Kafka, mais qu'une partie du protocole est implémenté
+| Amazon IoT | …
+| Xively | …
+|===
+
+== MQTT, les alternatives
+
+- XMPP, plus verbeux, plus gourmand
+- DDS, plus performant, plus gourmand et peu répandu
+- CoAP, *n'est pas broker-centric*, fonctionne sur l'UDP
+- WAMP, RPC + Pub/Sub. Ne fonctionne aujourd'uih qu'avec une connexion Websocket. _(un seul broker compatible)_
+- HTTP/2, très jeune, propose une alternative intéressante à MQTT/Websocket _(Pub/Sub natif)_
+
+== Questions ?
+
+image::dsori.gif[]
