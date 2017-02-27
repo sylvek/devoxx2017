@@ -3,3 +3,5 @@ Gemfile.lock
 **/.gradle
 .gem
 .bundle
+**/report.xml
+hello.zip
