@@ -107,7 +107,7 @@ Le message…
 
 == MQTT, la performance
 
-A titre de comparaison avec le protocole HTTPS.
+A titre de comparaison avec le protocole HTTP.
 
 - 93x faster throughput
 - 11.89x less battery to send
@@ -123,7 +123,7 @@ A titre de comparaison avec le protocole HTTPS.
 | rabbitmq | plugin MQTT. Pas de support QoS 2, implémentation de Websocket en béta
 | activemq | websocket, possibilité de plugin customisé. Pour la HA, nécessite un point de référence, Zookeeper/MySQL/Disque…
 | HiveMQ | propose son produit dans le cloud
-| Kafka | il est possible d'avoir un pont avec Kafka, mais qu'une partie du protocole est implémenté
+| Kafka | il est possible d'avoir un pont avec Kafka, mais une partie du protocole est implémenté
 | Amazon IoT | …
 | Xively | …
 |===
