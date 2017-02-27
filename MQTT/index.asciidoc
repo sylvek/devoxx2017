@@ -38,7 +38,7 @@ image::MQTT.png[]
 
 - les publishers et subscribers ne se connaissent pas
 - ils peuvent ne pas être connectés en même temps
-- le subscriber reçoit les messages que lorsqu'il écoute
+- le subscriber ne reçoit les messages que lorsqu'il écoute
 
 == MQTT, les topics
 
