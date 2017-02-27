@@ -31,7 +31,8 @@ platform :android do
     email = prompt text: "email destinataire:"
     options[:email] = email
     puts "dépot sur un ftp, #{email} sera prévenu"
-    upload_free_ftp email: email, binary: '../build/libs/hello.jar'
+    zip path: 'build/libs', output_path: '../hello.zip'
+    upload_free_ftp binary: 'hello.zip'
   end
 
   desc "Submit a new Beta Build to Crashlytics Beta"
@@ -58,7 +59,7 @@ platform :android do
        slack_url: "https://hooks.slack.com/services/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",
        message: "Successfully deployed new App for #{options[:email]} :)"
     )
-    puts  "bravo #{options[:email]} !"
+    UI.success  "bravo #{options[:email]} !"
   end
 
   error do |lane, exception|
