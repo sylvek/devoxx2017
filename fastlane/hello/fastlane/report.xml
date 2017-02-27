@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.001140187">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000826564">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: gradle" time="7.613415238">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: java -jar ../build/libs/hello.jar" time="0.139670258">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: prompt" time="7.45489265">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: slack" time="1.592322221">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
