@@ -31,7 +31,18 @@ $> gem install fastlane
 ```
 $> cd hello
 $> fastlane init
-$> fastlane new_action
 ```
 
 Let's play with Fastlane! :)
+
+## Course
+
+```
+$> fastlane init
+```
+
+créé un répertoire fastlane contenant
+
+- un répertoire actions vide
+- Appfile
+- Fastfile
