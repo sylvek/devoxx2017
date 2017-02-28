@@ -137,7 +137,7 @@ lane :devoxx do |options|
   gradle task: "build"
   sh 'java -jar ../build/libs/hello.jar'
   zip path: 'build/libs', output_path: '../hello.zip'
-  email = prompt text: "email destinataire:" unless options.key?(:email)
+  options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
   puts "dépot sur un ftp, #{options[:email]} sera prévenu"
 end
 ```
