@@ -1,7 +1,7 @@
 Gemfile.lock
 **/build
 **/.gradle
+**/fastlane
 .gem
 .bundle
-**/report.xml
 hello.zip
