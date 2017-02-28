@@ -28,10 +28,9 @@ platform :android do
   lane :devoxx do |options|
     gradle task: "build"
     sh 'java -jar ../build/libs/hello.jar'
-    email = prompt text: "email destinataire:"
-    options[:email] = email
-    puts "dépot sur un ftp, #{email} sera prévenu"
     zip path: 'build/libs', output_path: '../hello.zip'
+    options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
+    puts "dépot sur un ftp, #{options[:email]} sera prévenu"
     upload_free_ftp binary: 'hello.zip'
   end
 
