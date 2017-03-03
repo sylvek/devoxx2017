@@ -1,4 +1,15 @@
-# Tool in action, Fastlane
+# Fastlane
+
+## Présentation
+
+> fastlane is the tool to release your iOS and Android app 🚀
+> It handles all tedious tasks, like generating screenshots, dealing with code signing, and releasing your application.
+
+2014, création de Fastlane par Felix Krause
+
+2015, Fastlane rejoint Twitter _(via Fabric)_
+
+2017, Fastlane rejoint Google _(via Fabric)_
 
 ## How to install
 
