@@ -1,3 +1,10 @@
+= Qui suis-je ?
+
+- Sylvain Maucourt
+- https://github.com/sylvek
+- https://twitter.com/sylv3k
+- Leader Technique IoT chez Edelia _(ils recrutent!)_
+
 = MQTT, le protocole IoT
 
 == En quelques mots…
@@ -78,7 +85,7 @@ Le message…
 
 - sera envoyé à tous les subscribers
 - sera *AUSSI* envoyé à tous les nouveaux subscribers
-- correspond au *dernier* message lié à un topic
+- correspond au *dernier* message _"retenu"_ posté sur le topic souscrit
 
 == MQTT, "heartbeats"
 
