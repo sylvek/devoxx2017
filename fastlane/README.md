@@ -1,5 +1,14 @@
 # Fastlane
 
+## Qui suis-je ?
+
+- Sylvain Maucourt
+- https://github.com/sylvek
+- https://twitter.com/sylv3k
+- Fastlane _commiter_
+- ex-membre de la communauté Android
+- Release Manager Mobile chez Deveryware _(ils recrutent!)_
+
 ## Présentation
 
 > fastlane is the tool to release your iOS and Android app 🚀
@@ -14,39 +23,16 @@
 ## How to install
 
 ```
-$> brew install rbenv / apt-get install rbenv ruby-build
-$> rbenv init
-$> rbenv install -s
-$> export PATH="~/.rbenv/shims:${PATH}"
-$> gem install bundler
-$> rbenv rehash
-$> bundle
-$> rbenv rehash
-$> fastlane --version
-```
-
-or...
-```
-$> ./install-fastlane.sh
-$> # you have to use bash, zsh seems to not work.
-$> fastlane --version
-```
-
-or...
-```
 $> gem install fastlane
 ```
 
-## How to use
+## Action !
 
-```
-$> cd hello
-$> fastlane init
-```
+On va builder une application Android, prendre des screenshots, et la déployer sur Google Playstore.
 
-Let's play with Fastlane! :)
+Comme on est super cool, on va aussi la zipper puis la stocker sur un ftp et envoyer une notification Slack.
 
-## Course
+Et tout ça… automatiquement.
 
 ```
 $> fastlane init
