@@ -35,7 +35,7 @@ platform :android do
     zip path: 'fastlane/metadata', output_path: '../metadata.zip'
     options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
     puts "dépot sur un ftp, #{options[:email]} sera prévenu"
-    upload_free_ftp binary: '../metadata.zip'
+    upload_free_ftp binary: 'metadata.zip'
   end
 
   desc "Submit a new Beta Build to Crashlytics Beta"
@@ -55,7 +55,7 @@ platform :android do
 
   # You can define as many lanes as you want
 
-  after_all do |lane|
+  after_all do |lane, options|
     # This block is called, only if the executed lane was successful
 
     # slack(
