@@ -2,14 +2,20 @@
 
 ## Qui suis-je ?
 
+![Sylvek](https://avatars3.githubusercontent.com/u/2259101?v=3&s=460)
+
 - Sylvain Maucourt
 - https://github.com/sylvek
 - https://twitter.com/sylv3k
-- Fastlane _commiter_
-- ex-membre de la communauté Android
-- Release Manager Mobile chez Deveryware _(ils recrutent!)_
+- _ancien_ Fastlane commiter
+- _ancien_ membre de la communauté Android
+- _ancien_ Release Manager Mobile chez Deveryware _(ils recrutent !)_
 
-## Présentation
+![Deveryware](https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAeIAAAAJGM5ZDNlMmY2LTczOGYtNGY5OC1hNzQzLTBhODRmYzBhZTNiZg.png)
+
+## Fastlane
+
+![fastlane](https://fastlane.tools/assets/img/logo-desktop.png)
 
 > fastlane is the tool to release your iOS and Android app 🚀
 > It handles all tedious tasks, like generating screenshots, dealing with code signing, and releasing your application.
@@ -28,11 +34,11 @@ $> gem install fastlane
 
 ## Action !
 
-On va builder une application Android, prendre des screenshots, et la déployer sur Google Playstore.
+On va builder une application Android jouer les tests et prendre une série de screenshots.
 
 Comme on est super cool, on va aussi la zipper puis la stocker sur un ftp et envoyer une notification Slack.
 
-Et tout ça… automatiquement.
+Et tout ça… sans les mains ou presque.
 
 ```
 $> fastlane init

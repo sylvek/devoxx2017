@@ -1,9 +1,13 @@
 = Qui suis-je ?
 
+image:https://avatars3.githubusercontent.com/u/2259101?v=3&s=460[]
+
 - Sylvain Maucourt
 - https://github.com/sylvek
 - https://twitter.com/sylv3k
 - Leader Technique IoT chez Edelia _(ils recrutent!)_
+
+image:http://edelia.fr/sites/default/files/logo_1.png[]
 
 = MQTT, le protocole IoT
 
