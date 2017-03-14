@@ -26,12 +26,12 @@ platform :android do
   end
 
   lane :devoxx do |options|
-    #gradle(task: "assembleDebug assembleAndroidTest")
-    #screengrab(
-    #  locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
-    #  clear_previous_screenshots: true,
-    #  tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
-    #)
+    gradle(task: "assembleDebug assembleAndroidTest")
+    screengrab(
+      locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+      clear_previous_screenshots: true,
+      tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+    )
     zip path: 'fastlane/metadata', output_path: '../metadata.zip'
     options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
     puts "dépot sur un ftp, #{options[:email]} sera prévenu"

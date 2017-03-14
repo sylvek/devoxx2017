@@ -76,7 +76,7 @@ $> fastlane devoxx
 
 ```
 lane :devoxx do
-  gradle task: "build"
+  gradle(task: "assembleDebug assembleAndroidTest")
 end
 ```
 
@@ -84,12 +84,16 @@ end
 $> fastlane devoxx
 ```
 
-### Executons le programme
+### Capturons les écrans!
 
 ```
 lane :devoxx do
-  gradle task: "build"
-  sh 'java -jar ../build/libs/hello.jar'
+  gradle(task: "assembleDebug assembleAndroidTest")
+  screengrab(
+    locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+    clear_previous_screenshots: true,
+    tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+  )
 end
 ```
 
@@ -101,9 +105,13 @@ $> fastlane devoxx
 
 ```
 lane :devoxx do
-  gradle task: "build"
-  sh 'java -jar ../build/libs/hello.jar'
-  zip path: 'build/libs', output_path: '../hello.zip'
+  gradle(task: "assembleDebug assembleAndroidTest")
+  screengrab(
+    locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+    clear_previous_screenshots: true,
+    tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+  )
+  zip path: 'fastlane/metadata', output_path: '../metadata.zip'
 end
 ```
 
@@ -114,10 +122,14 @@ $> fastlane devoxx
 ### Demandons un mail à l'execution
 
 ```
-lane :devoxx do
-  gradle task: "build"
-  sh 'java -jar ../build/libs/hello.jar'
-  zip path: 'build/libs', output_path: '../hello.zip'
+lane :devoxx do |options|
+  gradle(task: "assembleDebug assembleAndroidTest")
+  screengrab(
+    locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+    clear_previous_screenshots: true,
+    tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+  )
+  zip path: 'fastlane/metadata', output_path: '../metadata.zip'
   email = prompt text: "email destinataire:"
   puts "dépot sur un ftp, #{email} sera prévenu"
 end
@@ -131,9 +143,13 @@ $> fastlane devoxx
 
 ```
 lane :devoxx do |options|
-  gradle task: "build"
-  sh 'java -jar ../build/libs/hello.jar'
-  zip path: 'build/libs', output_path: '../hello.zip'
+  gradle(task: "assembleDebug assembleAndroidTest")
+  screengrab(
+    locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+    clear_previous_screenshots: true,
+    tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+  )
+  zip path: 'fastlane/metadata', output_path: '../metadata.zip'
   options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
   puts "dépot sur un ftp, #{options[:email]} sera prévenu"
 end
@@ -194,12 +210,16 @@ mettre à jour notre action:
 
 ```
 lane :devoxx do |options|
-  gradle task: "build"
-  sh 'java -jar ../build/libs/hello.jar'
-  zip path: 'build/libs', output_path: '../hello.zip'
+  gradle(task: "assembleDebug assembleAndroidTest")
+  screengrab(
+    locales: ['fr-FR', 'en-US', 'es-ES', 'de-DE'],
+    clear_previous_screenshots: true,
+    tests_apk_path: 'app/build/outputs/apk/app-debug.apk'
+  )
+  zip path: 'fastlane/metadata', output_path: '../metadata.zip'
   options[:email] = prompt text: "email destinataire:" unless options.key?(:email)
   puts "dépot sur un ftp, #{options[:email]} sera prévenu"
-  upload_free_ftp binary: 'hello.zip'
+  upload_free_ftp binary: 'metadata.zip'
 end
 ```
 
