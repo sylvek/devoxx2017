@@ -10,7 +10,8 @@ module Fastlane
         random = ""; 8.times{random << (65 + rand(25)).chr}
         UI.message "we are uploading #{params[:binary]}"
         ftp = Net::FTP.new('ec2-54-93-156-69.eu-central-1.compute.amazonaws.com')
-        ftp.default_passive = false
+        ftp.debug_mode = true
+        ftp.passive = false
         ftp.login 'bob', 'devoxx'
         ftp.putbinaryfile params[:binary], "#{random}.jar"
         ftp.close
