@@ -11,6 +11,11 @@ import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -34,6 +39,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testTakeScreenShot()
     {
+        onView(withId(R.id.hello)).check(matches(isDisplayed()));
         Screengrab.screenshot("hello");
     }
 }
