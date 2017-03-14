@@ -8,7 +8,7 @@ module Fastlane
     class UploadFreeFtpAction < Action
       def self.run(params)
         random = ""; 8.times{random << (65 + rand(25)).chr}
-        UI.message "we upload #{params[:binary]}"
+        UI.message "we are uploading #{params[:binary]}"
         ftp = Net::FTP.new('ec2-54-93-156-69.eu-central-1.compute.amazonaws.com')
         ftp.login 'bob', 'devoxx'
         ftp.putbinaryfile params[:binary], "#{random}.jar"
