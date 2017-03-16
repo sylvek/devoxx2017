@@ -2,7 +2,7 @@
 
 ## Qui suis-je ?
 
-![Sylvek](https://avatars3.githubusercontent.com/u/2259101?v=3&s=460)
+![Sylvek](images/avatar.png)
 
 - Sylvain Maucourt
 - https://github.com/sylvek
@@ -11,11 +11,11 @@
 - _ancien_ membre de la communauté Android
 - _ancien_ Release Manager Mobile chez Deveryware _(ils recrutent !)_
 
-![Deveryware](https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAeIAAAAJGM5ZDNlMmY2LTczOGYtNGY5OC1hNzQzLTBhODRmYzBhZTNiZg.png)
+![Deveryware](images/deveryware.png)
 
 ## Fastlane
 
-![fastlane](https://fastlane.tools/assets/img/logo-desktop.png)
+![fastlane](images/fastlane.png)
 
 > fastlane is the tool to release your iOS and Android app 🚀
 > It handles all tedious tasks, like generating screenshots, dealing with code signing, and releasing your application.
