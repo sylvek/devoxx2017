@@ -64,3 +64,69 @@ TIP: Il faut voir les "messages" _(en provenance des Devices)_ comme des command
 
 Ainsi, en projetant un message comme une commande, on pourra reproduire le même
 procédé qu'appliqué sur le pattern précèdent (CreateMobile).
+
+== Outils pour son équipe/sa startup
+
+Les années passent et… on passe du dév. junior à architecte/CTO/… (avec la carte de crédit)
+
+=== La communication
+
+Les points d'amélioration clés.
+
+- Rapidité
+- Transparence
+- Intensité
+
+- La comm' asynchrone => mail, site
+- La comm' synchrone => réunion, cérémonie agile
+
+=== Organisation
+
+PAAS.
+
+=== Outils
+
+- Google Apps
+- Dropbox
+- Docusign
+- Mailgun et Mailjet
+- Mailchimp
+- Twilio
+- Insightly
+- Skype
+- Appear.in
+- Zoom.us
+- Clever Cloud
+
+- Asana
+- Google Apps/Drive
+- OpsGenie
+- Runscope
+- LastPass
+- AirCall
+- … et Slack
+
+2-Factor Authentication
+
+=== Recettes
+
+*Les emails*
+
+- Transactionnel (mot de passe oublié)
+- Informations
+
+*Suivi de production*
+
+- Runscope (scenario qui se positionne comme un client, on peut voir si les scenario se dégrade dans le temps)
+  * SLA inclus
+- 12 Factors App
+
+*Communication interne* _(comment réduire le volume de mail)_
+
+Slack. (plus travailler autour des channels)
+
+- les micro-services ont leur channel
+- les tests remontent les erreurs dans les chan'
+- Jenkins aussi communique
+
+=> suppression des mails robotisés qui servent à rien.
