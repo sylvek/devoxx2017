@@ -1,0 +1,66 @@
+= Devoxx 2017
+
+== CQRS / Event Sourcing FROM SCRATCH
+
+On utilise les projections pour garder l'état du système.
+Comment mettre à jour les aggregates distribuées?
+  -> les aggregates relisent l'ensemble de l'EventStore à chaque fois que nécessaire.
+
+CAUTION: L'EventStore est la source de vérité.
+
+TIP: Dans le cadre du projet, il faut que le provisioning d'un nouveau device engendre
+un événement. (ex. NewDeviceAddedOnTheSystemEvent)
+
+[source, bash]
+----
+human
+  -> controller (DeviceController)
+    -> command (CreateMobile)  -> Aggregate
+                                  -> chargement de EventStore "DeviceManagement"
+                                    -> est-ce que mobile existe?
+                                    -> provisioning chez Xively
+                                      -> (si soucis => KO)
+                                -> event (NewDeviceAddedOnTheSystemEvent)
+                                  -> eventStore
+---------------------------- partie qui peut être asynchrone -------------------
+                                -> mise à jour des projections
+                                  -> mise à jour de la vue
+----
+
+TIP: On n'est pas obligé de faire de l'asynchronisme dés le départ.
+
+pour les aggregates distribués, on recharge l'EventStore à chaque fois.
+ça veut dire qu'il faut un eventstore par aggregate.
+
+Dans le cas Cassandra, cela voudrait donc dire, une table par domaine, avec des
+vues matérialisées _(qui feront office de vue pour les queries)_.
+
+Ex. table événements "DeviceManagement", avec un timestamp, un événement (provisioned, reseted, poweroff, etc.)
+
+Un table événements "messages", avec un timestamp, qui correspondrait à l'ensemble des messages reçus depuis Xively.
+
+Des ordonanceurs qui dispatchent les messages "techniques" dans le bon EventStore (ex. DeviceManagement)
+
+[source, bash]
+----
+xively -> kinesis -> (lambda) -> kafka -> (transformateur) -> message "edelia"
+                                                           -> stockage dans un EventStore*
+* cet EventStore nous permettra de rejouer l'ensemble des messages brutes
+afin de (re)ordonnancer les messages ultérieurement.
+
+message "edelia" -> (ordonanceur)
+      -> c'est un message "métier" (ex. 24°c)
+        -> on le met dans une file kafka spécifique au client lié au device
+      -> c'est un message "technique" (ex. Reboot)
+        -> écriture dans l'EventStore "DeviceManagement"
+        -> mise à jour des projections
+        -> mise à jour des vues (ex. ElasticSearch)
+----
+
+Dans le dernier exemple, imaginons que nous voulions réaliser un traitement particulier
+sur un device qui reboot toutes les 5min (ex. le mettre en maintenance) ?
+
+TIP: Il faut voir les "messages" _(en provenance des Devices)_ comme des commandes.
+
+Ainsi, en projetant un message comme une commande, on pourra reproduire le même
+procédé qu'appliqué sur le pattern précèdent (CreateMobile).
