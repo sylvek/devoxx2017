@@ -130,3 +130,31 @@ Slack. (plus travailler autour des channels)
 - Jenkins aussi communique
 
 => suppression des mails robotisés qui servent à rien.
+
+== Au secours, mes tests d'intégration sont instables (Junit5-Docker)
+
+=== Nouvelles features de Junit5
+
+- Junit5, @Nested / @DisplayName (c'est le nom du test)
+- @Before => @BeforeEach / @After => @AfterEach
+- Amélioration des Assertions.
+
+=> *docker c'est top pour faire des tests d'intégration*
+
+- @Docker(image=…, ports=@Ports(inner=27017, exposed=27017), waitFor=@WaitFor("waiting for connections"))
+
+et docker-compose ?
+
+== Re-indexation ElasticSearch
+
+Inject-Node?
+
+remplace les filters (grok & co) de logstash par un pipeline dans ElasticSearch.
+
+le pipeline s'applique en flux-tendu. dans le PUT /index/type/..?pipeline=..
+
+Ainsi, on pousse de la donnée brute, et ElasticSearch l'index convenablement.
+
+*Mais comment appliquer un pipeline sur de l'existant?*
+
+GET _ingest/pipeline/[mon pipeline]
