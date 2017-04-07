@@ -1,0 +1,58 @@
+fastlane_version "1.103.0"
+
+default_platform :ios
+
+platform :android do
+
+  desc "Submit a new build"
+  lane :release do |options|
+    sign_apk(
+      apk_path: "platforms/android/build/outputs/apk/android-armv7-release-unsigned.apk",
+      signed_apk_path: "platforms/android/build/outputs/apk/android-release-unaligned.apk",
+      tsa: "http://timestamp.comodoca.com/rfc3161",
+      storepass: ":)",
+      alias: ":)"
+    )
+    zipalign(
+      unaligned_apk_path: "platforms/android/build/outputs/apk/android-release-unaligned.apk",
+      aligned_apk_path: "platforms/android/build/outputs/apk/#{options[:build]}.apk")
+
+    if (options[:to_appaloosa])
+      appaloosa(binary: "platforms/android/build/outputs/apk/#{options[:build]}.apk", group_ids: "11777", screenshots: "")
+    end
+
+    if (options[:to_store])
+      supply(apk: "platforms/android/build/outputs/apk/#{options[:build]}.apk", track: "beta")
+    end
+  end
+
+end
+
+platform :ios do
+
+  before_all do
+    unlock_keychain
+  end
+
+  desc "Submit a new build"
+  lane :release do |options|
+    sigh(adhoc: options[:to_appaloosa], skip_install: true, force: true)
+    update_project_provisioning(xcodeproj: "platforms/ios/#{options[:build]}.xcodeproj", profile: lane_context[SharedValues::SIGH_PROFILE_PATH])
+    recreate_schemes(project: "platforms/ios/#{options[:build]}.xcodeproj")
+    gym(scheme: options[:build], project: "platforms/ios/#{options[:build]}.xcodeproj", archive_path: "/tmp/app.xcarchive", output_name: "#{options[:build]}.ipa", use_legacy_build_api: true)
+
+    if (options[:to_appaloosa])
+      appaloosa(group_ids: "11777", screenshots: "")
+    end
+
+    if (options[:to_store])
+      pilot(app_identifier: "")
+    end
+  end
+
+  after_all do |lane|
+  end
+
+  error do |lane, exception|
+  end
+end

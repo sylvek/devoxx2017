@@ -1,0 +1,24 @@
+node('xcode8') {
+    checkout scm
+
+    stage ('install bundler') {
+      sh "~/.rbenv/bin/rbenv install -s && ~/.rbenv/bin/rbenv rehash && ~/.rbenv/shims/gem install bundler && ~/.rbenv/shims/bundle install --path .gem && ~/.rbenv/shims/bundle update"
+    }
+
+    stage ('build ios') {
+      sh 'PATH=/usr/local/bin/:$PATH npm install && PATH=/usr/local/bin/:$PATH ionic state reset && PATH=/usr/local/bin/:$PATH ionic prepare ios'
+    }
+
+    withCredentials([
+        [$class: 'StringBinding', credentialsId: 'ITUNES_PASSWORD', variable: 'FASTLANE_PASSWORD'],
+        [$class: 'StringBinding', credentialsId: 'KEYCHAIN_PASSWORD', variable: 'FL_UNLOCK_KEYCHAIN_PASSWORD']
+      ]) {
+       stage ('deploy ios') {
+        sh '~/.rbenv/shims/bundle exec fastlane ios release build:My-App to_store:true'
+       }
+    }
+
+    stage ('archive ios') {
+      archive '**/*.ipa'
+    }
+}
